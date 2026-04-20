@@ -1,0 +1,10 @@
+{
+    "require": {
+        "dompdf/dompdf": "^3.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "": "application/third_party/"
+        }
+    }
+}
