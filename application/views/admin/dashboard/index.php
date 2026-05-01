@@ -1,10 +1,10 @@
 <style>
-    .center {
-        display: block;
-        margin-left: auto;
-        margin-right: auto;
-        width: 50%;
-    }
+.center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+}
 </style>
 
 <div class="pcoded-main-container">
@@ -28,7 +28,7 @@
         <!-- [ breadcrumb ] end -->
 
         <!-- [ Main Content ] start -->
-       
+
 
         <div class="row">
             <div class="col-md-12 col-xl-4">
@@ -42,7 +42,7 @@
                             <?php
                             $no_hostel= $this->school_model->hostel_count();
                           ?>
-                        
+
                             <h4><?=$no_hostel['hostel_cnt']?></h4>
                             <h6>Total Hostel</h6>
                         </div>
@@ -58,7 +58,7 @@
                             <i class="feather icon-clipboard"></i>
                         </div>
                         <div class="col-sm-9">
-                        <?php
+                            <?php
                             $no_trust= $this->doner_model->trust_count();
                           ?>
                             <h4><?=$no_trust['trust_cnt']?></h4>
@@ -76,7 +76,7 @@
                             <i class="feather icon-user"></i>
                         </div>
                         <div class="col-sm-9">
-                        <?php
+                            <?php
                             $no_student= $this->student_model->student_count();
                            
                            
@@ -96,7 +96,7 @@
                             <i class="feather icon-globe"></i>
                         </div>
                         <div class="col-sm-9">
-                        <?php
+                            <?php
                             $no_student_state= $this->student_model->student_state_count();
                           ?>
                             <h4><?=$no_student_state[0]['state_count']?></h4>
@@ -114,7 +114,7 @@
                             <i class="feather icon-calendar"></i>
                         </div>
                         <div class="col-sm-9">
-                        <?php
+                            <?php
                             $no_student_last_year= $this->student_model->student_last_year_count();
                             $currentDate = new DateTime();
 $fiscalYearStartMonth = 4; 
@@ -141,7 +141,7 @@ if ($currentDate->format('n') < $fiscalYearStartMonth || ($currentDate->format('
                             <i class="feather icon-calendar"></i>
                         </div>
                         <div class="col-sm-9">
-                        <?php
+                            <?php
                             $no_student_current_year= $this->student_model->student_current_year_count();
                             $currentDate = new DateTime();
                             $fiscalYearStartMonth = 4;

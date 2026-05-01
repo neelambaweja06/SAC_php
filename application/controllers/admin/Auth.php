@@ -19,8 +19,6 @@
 		}
 
 		public function login(){
-
-
 			if($this->input->post('submit')){
 				$this->form_validation->set_rules('email', 'Email', 'trim|required');
 				$this->form_validation->set_rules('password', 'Password', 'trim|required');

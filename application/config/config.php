@@ -26,7 +26,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 // $config['base_url'] = 'https://sacbharat.org/';
 
-$config['base_url'] = 'http://localhost:80/cd';
+$config['base_url'] = 'http://localhost/sac_php/';
 
 /*
 |--------------------------------------------------------------------------

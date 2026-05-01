@@ -72,32 +72,44 @@
         </tr>
         </thead>
         <tbody>
-          <?php 
-        $c=1;
-          foreach($all_students as $row): ?>
-          <tr>
-          
-          <td><input type="checkbox" class="checkboxes" name="sid[]" value="<?= $row['id']; ?>"></label></td>
-          <td><?= $c++; ?></td>
-          <td><?= $row['fn_year']; ?></td>
-            <td><?= $row['student_code']; ?></td>
-            <td><?= $row['student_name_first']; ?> <?= $row['student_name_last']; ?></td>
- 
-            <td><?= $row['student_father_name']; ?></td>
-            <td><?= $row['student_mother_name']; ?></td>
+<?php if (!empty($all_students)) { ?>
+    <?php 
+    $c = 1;
+    foreach($all_students as $row): 
+    ?>
+    <tr>
+        <td>
+            <input type="checkbox" class="checkboxes" name="sid[]" value="<?= $row['id']; ?>">
+        </td>
 
-            <td><?= $row['school_name']; ?></td>
-           
-            <td class="text-right">
+        <td><?= $c++; ?></td>
+        <td><?= $row['fn_year']; ?></td>
+        <td><?= $row['student_code']; ?></td>
+        <td><?= $row['student_name_first']; ?> <?= $row['student_name_last']; ?></td>
+        <td><?= $row['student_father_name']; ?></td>
+        <td><?= $row['student_mother_name']; ?></td>
+        <td><?= $row['school_name']; ?></td>
+
+        <td class="text-right">
             <a href="<?= base_url('admin/student/viewid/'.$row['id']); ?>" class="btn btn-warning btn-flat">View</a>
-              <a href="<?= base_url('admin/student/edit/'.$row['id']); ?>" class="btn btn-info btn-flat">Edit</a>
-             <?php  if($this->session->userdata('role')==='1'){?>
-              <a href="<?= base_url('admin/student/del/'.$row['id']); ?>" class="btn btn-danger btn-flat" onclick="return confirm('Are you sure want to delete ?');">Delete</a></td>
-              <?php 
-            }?>
-          </tr>
-          <?php endforeach; ?>
-        </tbody>
+            <a href="<?= base_url('admin/student/edit/'.$row['id']); ?>" class="btn btn-info btn-flat">Edit</a>
+
+            <?php if($this->session->userdata('role') === '1'){ ?>
+                <a href="<?= base_url('admin/student/del/'.$row['id']); ?>" 
+                   class="btn btn-danger btn-flat"
+                   onclick="return confirm('Are you sure want to delete ?');">
+                   Delete
+                </a>
+            <?php } ?>
+        </td>
+    </tr>
+    <?php endforeach; ?>
+<?php } else { ?>
+    <tr>
+        <td colspan="10" class="text-center">No students found</td>
+    </tr>
+<?php } ?>
+</tbody>
        
       </table>
                     

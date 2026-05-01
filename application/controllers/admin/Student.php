@@ -403,22 +403,28 @@ $this->form_validation->set_rules('school_id', 'School', 'trim|required');
 		}
 		}
 		
-		public function action(){
-			if($this->session->has_userdata('is_admin_login'))
-			{
-				if($this->input->post('submit')){
-					$fin_year= $this->input->post('fin_year');
-					$school_id= $this->input->post('school_code');
-					$data['all_students'] =  $this->student_model->get_all_students_school_fil($fin_year,$school_id);
-				}
-		
-			$data['view'] = 'admin/student/action';
-			$this->load->view('admin/layout', $data);
-		}
-		else{
-			redirect('admin/auth/login');
-		}
-		}
+		public function action()
+{
+    if ($this->session->has_userdata('is_admin_login')) {
+
+        // ✅ Default empty array to avoid undefined variable error
+        $data['all_students'] = [];
+
+        if ($this->input->post('submit')) {
+
+            $fin_year  = $this->input->post('fin_year');
+            $school_id = $this->input->post('school_code');
+
+            $data['all_students'] = $this->student_model->get_all_students_school_fil($fin_year, $school_id);
+        }
+
+        $data['view'] = 'admin/student/action';
+        $this->load->view('admin/layout', $data);
+
+    } else {
+        redirect('admin/auth/login');
+    }
+}
 
 		function report_card($id){
 
@@ -455,8 +461,23 @@ $this->form_validation->set_rules('school_id', 'School', 'trim|required');
 					$fiscalYear = $currentYear . '-' . ($currentYear + 1);
 				}
 				if($this->input->post('submit')){
-					$status_id=$this->input->post('status_id');
-					$sid=$this->input->post('sid');
+
+    $status_id = $this->input->post('status_id');
+    $sid = $this->input->post('sid');
+
+    // ✅ check status
+    if (empty($status_id)) {
+        $this->session->set_flashdata('message', 'Please select action status!');
+        redirect('admin/student/action');
+        return;
+    }
+
+    // ✅ check checkbox selected
+    if (empty($sid) || !is_array($sid)) {
+        $this->session->set_flashdata('message', 'Please select at least one student!');
+        redirect('admin/student/action');
+        return;
+    }
 					
 					if($status_id =='2'){
 						for ($i = 0; $i < count($sid); $i++) {
